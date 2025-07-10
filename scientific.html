@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./image.jpeg" type="image/x-icon">
+    <title>داستان‌های علمی تخیلی</title>
+    <style>
+        /* استایل‌های قبلی */
+        body {
+            background-image: url('https://example.com/persian-pattern.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #f0e6d6;
+            font-family: 'B Nazanin', 'Orbitron', sans-serif;
+            margin: 0;
+            padding: 22px;
+            line-height: 1.6;
+            backdrop-filter: blur(5px);
+        }
+        header {
+            background: linear-gradient(135deg, #1C39BB, #0067A5, #00CED1, #32127A);
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(28, 57, 187, 0.6);
+            animation: fadeIn 2s ease-in-out;
+        }
+        h1 {
+            color: #00CED1;
+            text-shadow: 2px 2px 10px rgba(0, 206, 209, 0.9);
+            font-size: 3rem;
+        }
+        main {
+            margin-top: 20px;
+            background: rgba(28, 57, 187, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 25px rgba(28, 57, 187, 0.5);
+            backdrop-filter: blur(10px);
+            animation: slideUp 1s ease-in-out;
+        }
+        .story-section {
+            margin-bottom: 20px;
+            border: 2px dashed rgba(0, 206, 209, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .story-section textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(30, 30, 30, 0.9);
+            color: #F5F5F5;
+            font-size: 18px;
+            transition: transform 0.3s, background 0.3s;
+            margin-bottom: 10px;
+            box-shadow: inset 0 0 10px rgba(0, 206, 209, 0.4);
+        }
+        .add-branch button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1C39BB, #0067A5, #00CED1, #32127A);
+            color: #FFF;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(28, 57, 187, 0.7);
+            transition: background 0.3s, transform 0.3s;
+        }
+        .add-branch button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #0067A5, #1C39BB, #32127A, #00CED1);
+        }
+        .text-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: rgba(0, 206, 209, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 206, 209, 0.6);
+        }
+        .text-controls select,
+        .text-controls input,
+        .text-controls button {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #1C39BB;
+            background: rgba(28, 57, 187, 0.9);
+            color: #FFF;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .text-controls button:hover {
+            background: rgba(0, 206, 209, 0.9);
+        }
+        footer {
+            background: rgba(28, 57, 187, 0.9);
+            text-align: center;
+            padding: 20px;
+            color: #00CED1;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 0 15px rgba(28, 57, 187, 0.5);
+        }
+        .controls-container {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: rgba(28, 57, 187, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(28, 57, 187, 0.6);
+            flex-wrap: wrap;
+        }
+        .controls-container label {
+            color: #00CED1;
+            font-size: 16px;
+            text-shadow: 1px 1px 5px rgba(0, 206, 209, 0.7);
+        }
+        .controls-container select,
+        .controls-container input[type="color"],
+        .controls-container button {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #1C39BB;
+            background: rgba(28, 57, 187, 0.9);
+            color: #FFF;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .controls-container select:hover,
+        .controls-container input[type="color"]:hover,
+        .controls-container button:hover {
+            background: rgba(0, 206, 209, 0.9);
+            transform: scale(1.05);
+        }
+        .controls-container button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #1C39BB, #0067A5);
+            box-shadow: 0 0 15px rgba(28, 57, 187, 0.6);
+        }
+        .controls-container button:hover {
+            background: linear-gradient(135deg, #0067A5, #1C39BB);
+        }
+        .comments {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(0, 206, 209, 0.8);
+            box-shadow: 0 0 20px rgba(0, 206, 209, 0.5);
+            color: #f0f0f0;
+        }
+        .comments h3 {
+            text-align: center;
+            color: #00CED1;
+            text-shadow: 2px 2px 10px rgba(0, 206, 209, 0.7);
+            margin-bottom: 20px;
+        }
+        .comments textarea {
+            width: 100%;
+            height: 100px;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            background: rgba(30, 30, 30, 0.9);
+            color: #f5f5f5;
+            font-size: 16px;
+            margin-bottom: 10px;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: inset 0 0 10px rgba(0, 206, 209, 0.4);
+        }
+        .comments button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1C39BB, #0067A5, #00CED1, #32127A);
+            color: #FFF;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 0 15px rgba(28, 57, 187, 0.6);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .comments button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #0067A5, #1C39BB, #32127A, #00CED1);
+        }
+        #comment-list p {
+            background: rgba(0, 206, 209, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 206, 209, 0.5);
+            color: #f5f5f5;
+            animation: fadeIn 0.5s ease-in-out;
+            transition: transform 0.2s;
+        }
+        .locked-story {
+            opacity: 0.5;
+            pointer-events: none;
+            background: rgba(100, 100, 100, 0.2);
+        }
+        .writing-goals {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(28, 57, 187, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(28, 57, 187, 0.5);
+            color: #f0f0f0;
+            text-align: center;
+        }
+        .writing-goals h3 {
+            color: #00CED1;
+            text-shadow: 2px 2px 10px rgba(0, 206, 209, 0.7);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        .writing-goals input[type="number"] {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #1C39BB;
+            background: rgba(28, 57, 187, 0.9);
+            color: #FFF;
+            font-size: 16px;
+            width: 150px;
+            text-align: center;
+            margin-bottom: 15px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .writing-goals input[type="number"]:focus {
+            background: rgba(0, 206, 209, 0.9);
+            transform: scale(1.05);
+            outline: none;
+        }
+        .writing-goals button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1C39BB, #0067A5);
+            color: #FFF;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 0 15px rgba(28, 57, 187, 0.6);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .writing-goals button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #0067A5, #1C39BB);
+        }
+        .progress-container {
+            width: 100%;
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 206, 209, 0.4);
+        }
+        .progress-bar {
+            height: 20px;
+            background: linear-gradient(135deg, #00CED1, #FFD700);
+            width: 0;
+            border-radius: 10px;
+            transition: width 0.5s ease-in-out;
+            position: relative;
+        }
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+            border-radius: 10px;
+        }
+        #current-progress {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #FFD700;
+            text-shadow: 1px 1px 5px rgba(255, 215, 0, 0.7);
+        }
+        .writing-game {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(28, 57, 187, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(28, 57, 187, 0.5);
+            color: #f0f0f0;
+            text-align: center;
+        }
+        .writing-game h3 {
+            color: #00CED1;
+            text-shadow: 2px 2px 10px rgba(0, 206, 209, 0.7);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        .writing-game textarea {
+            width: 100%;
+            height: 100px;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            background: rgba(30, 30, 30, 0.9);
+            color: #f5f5f5;
+            font-size: 16px;
+            margin-bottom: 10px;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: inset 0 0 10px rgba(0, 206, 209, 0.4);
+        }
+        .writing-game button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1C39BB, #0067A5);
+            color: #FFF;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 0 15px rgba(28, 57, 187, 0.6);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .writing-game button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #0067A5, #1C39BB);
+        }
+        .game-score {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #FFD700;
+            text-shadow: 1px 1px 5px rgba(255, 215, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>داستان های علمی تخیلی</h1>
+    </header>
+    <main>
+        <div class="controls-container">
+            <!-- انتخاب اندازه فونت -->
+            <label for="font-size">اندازه متن:</label>
+            <select id="font-size" onchange="updateTextStyle()">
+                <option value="16px" selected>16</option>
+                <option value="18px">18</option>
+                <option value="20px">20</option>
+                <option value="22px">22</option>
+                <option value="24px">24</option>
+                <option value="26px">26</option>
+                <option value="28px">28</option>
+                <option value="30px">30</option>
+                <option value="32px">32</option>
+                <option value="34px">34</option>
+                <option value="36px">36</option>
+            </select>
+
+            <!-- انتخاب فونت -->
+            <label for="font-family">فونت:</label>
+            <select id="font-family" onchange="updateTextStyle()">
+                <option value="Arial">Arial</option>
+                <option value="Orbitron">Orbitron</option>
+                <option value="Dubai">Dubai</option>
+                <option value="Calibri">Calibri</option>
+                <option value="B Nazanin" selected>B Nazanin</option>
+            </select>
+
+            <!-- انتخاب رنگ متن -->
+            <label for="text-color">رنگ متن:</label>
+            <input type="color" id="text-color" value="#F5F5F5" onchange="updateTextStyle()">
+
+            <!-- دکمه‌های ذخیره، بارگذاری و بازنشانی -->
+            <button onclick="saveStory()">ذخیره داستان</button>
+            <button onclick="loadStory()">بارگذاری داستان</button>
+            <button onclick="resetTextStyle()">بازنشانی</button>
+        </div>
+
+        <!-- اضافه کردن story-container -->
+        <div id="story-container">
+            <div class="story-section" id="section-1">
+                <textarea id="story-1" placeholder="اینجا بخش اول داستان خود را بنویسید..."></textarea>
+                <button onclick="lockOrUnlockSection(1, event)">قفل/بازگشایی بخش 1</button>
+            </div>
+        </div>
+
+        <div class="add-branch">
+            <button onclick="addBranch()">اضافه کردن شاخه جدید</button>
+        </div>
+
+        <!-- بخش بازی آموزشی -->
+        <section class="writing-game">
+            <h3>بازی آموزشی نوشتن</h3>
+            <textarea id="game-input" placeholder="یک جمله بنویسید..."></textarea>
+            <button onclick="checkSentence()">بررسی جمله</button>
+            <p class="game-score" id="game-score">امتیاز شما: 0</p>
+        </section>
+
+        <section class="writing-goals">
+            <h3>هدف‌های نوشتاری</h3>
+            <input type="number" id="word-count-goal" placeholder="تعداد کلمه هدف" min="1">
+            <button onclick="setWritingGoal()">ثبت هدف</button>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p id="current-progress">پیشرفت فعلی: ۰ کلمه از ۰ کلمه.</p>
+        </section>
+
+        <section class="comments">
+            <h3>کامنت‌ها</h3>
+            <textarea id="comment-input" placeholder="کامنتی بنویسید..."></textarea>
+            <button onclick="addComment()">ارسال کامنت</button>
+            <div id="comment-list"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 داستان های علمی تخیلی تمام حقوق محفوظ است.</p>
+    </footer>
+    <script>
+        let sectionCount = 1;
+        let sectionsLockStatus = {};
+        let gameScore = 0;
+
+        function addBranch() {
+            sectionCount++;
+            const storyContainer = document.getElementById('story-container');
+
+            if (!storyContainer) {
+                console.error("عنصر story-container یافت نشد!");
+                return;
+            }
+
+            const newSection = document.createElement('div');
+            newSection.classList.add('story-section');
+            newSection.id = `section-${sectionCount}`;
+
+            const newTextArea = document.createElement('textarea');
+            newTextArea.id = `story-${sectionCount}`;
+            newTextArea.placeholder = `اینجا بخش ${sectionCount} داستان خود را بنویسید...`;
+
+            const lockButton = document.createElement('button');
+            lockButton.textContent = 'قفل/بازگشایی بخش ' + sectionCount;
+            lockButton.onclick = function(event) { lockOrUnlockSection(sectionCount, event); };
+
+            newSection.appendChild(newTextArea);
+            newSection.appendChild(lockButton);
+            storyContainer.appendChild(newSection);
+        }
+
+        function lockOrUnlockSection(sectionNumber, event) {
+            const sectionTextarea = document.getElementById(`story-${sectionNumber}`);
+            const button = event.target;
+
+            if (!sectionsLockStatus[sectionNumber]) {
+                const inputPassword = prompt("برای قفل کردن بخش رمز عبور را وارد کنید:");
+                if (inputPassword) {
+                    sectionsLockStatus[sectionNumber] = inputPassword;
+                    sectionTextarea.classList.add('locked-story');
+                    button.textContent = 'بازگشایی بخش ' + sectionNumber;
+                    alert(`بخش ${sectionNumber} قفل شد.`);
+                }
+            } else {
+                const inputPassword = prompt("برای بازگشایی بخش رمز عبور را وارد کنید:");
+                if (inputPassword === sectionsLockStatus[sectionNumber]) {
+                    delete sectionsLockStatus[sectionNumber];
+                    sectionTextarea.classList.remove('locked-story');
+                    button.textContent = 'قفل/بازگشایی بخش ' + sectionNumber;
+                    alert(`بخش ${sectionNumber} بازگشایی شد.`);
+                } else {
+                    alert("رمز عبور اشتباه است!");
+                }
+            }
+        }
+
+        function updateTextStyle() {
+            const fontSize = document.getElementById('font-size').value;
+            const fontFamily = document.getElementById('font-family').value;
+            const textColor = document.getElementById('text-color').value;
+
+            document.querySelectorAll('.story-section textarea').forEach(textarea => {
+                textarea.style.fontSize = fontSize;
+                textarea.style.fontFamily = fontFamily;
+                textarea.style.color = textColor;
+            });
+        }
+
+        function saveStory() {
+            const storyData = [];
+            document.querySelectorAll('.story-section textarea').forEach((textarea, index) => {
+                storyData.push({
+                    section: index + 1,
+                    content: textarea.value
+                });
+            });
+
+            localStorage.setItem('savedStory', JSON.stringify(storyData));
+            alert('داستان با موفقیت ذخیره شد!');
+        }
+
+        function loadStory() {
+            const savedStory = localStorage.getItem('savedStory');
+            if (savedStory) {
+                const storyData = JSON.parse(savedStory);
+                storyData.forEach((section, index) => {
+                    if (document.getElementById(`story-${index + 1}`)) {
+                        document.getElementById(`story-${index + 1}`).value = section.content;
+                    } else {
+                        addBranch();
+                        document.getElementById(`story-${index + 1}`).value = section.content;
+                    }
+                });
+                alert('داستان با موفقیت بارگذاری شد!');
+            } else {
+                alert('هیچ داستانی ذخیره نشده است.');
+            }
+        }
+
+        function resetTextStyle() {
+            document.getElementById('font-size').value = '18px';
+            document.getElementById('font-family').value = 'Orbitron';
+            document.getElementById('text-color').value = '#F5F5F5';
+            updateTextStyle();
+        }
+
+        let wordCountGoal = 0;
+        let progressBar = document.getElementById('progress-bar');
+
+        function setWritingGoal() {
+            const goalInput = document.getElementById('word-count-goal');
+            wordCountGoal = parseInt(goalInput.value);
+            if (wordCountGoal && wordCountGoal > 0) {
+                alert(`هدف تعداد کلمه شما تنظیم شد: ${wordCountGoal}`);
+                updateProgress();
+            } else {
+                alert("لطفاً یک مقدار معتبر وارد کنید.");
+            }
+        }
+
+        function updateProgress() {
+            let totalWords = 0;
+            document.querySelectorAll('.story-section textarea').forEach(textarea => {
+                totalWords += textarea.value.split(/\s+/).filter(word => word).length;
+            });
+
+            const progressElement = document.getElementById('current-progress');
+            if (wordCountGoal) {
+                const progressPercentage = (totalWords / wordCountGoal) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+                progressElement.textContent = `پیشرفت فعلی: ${totalWords} کلمه از ${wordCountGoal} کلمه.`;
+            } else {
+                progressBar.style.width = '0%';
+                progressElement.textContent = `پیشرفت فعلی: ${totalWords} کلمه.`;
+            }
+        }
+
+        function addComment() {
+            const commentInput = document.getElementById('comment-input');
+            const commentList = document.getElementById('comment-list');
+
+            if (commentInput.value.trim()) {
+                const newComment = document.createElement('p');
+                newComment.textContent = commentInput.value;
+                newComment.style.borderBottom = "1px dashed #00FFFF";
+                commentList.appendChild(newComment);
+                commentInput.value = '';
+            } else {
+                alert("لطفاً یک متن کامنت وارد کنید.");
+            }
+        }
+
+        // سیستم بازی آموزشی
+        function checkSentence() {
+            const sentence = document.getElementById('game-input').value;
+            if (sentence.trim()) {
+                // بررسی جمله با یک تابع ساده
+                const isValid = validateSentence(sentence);
+
+                if (isValid) {
+                    gameScore += 10;
+                    document.getElementById('game-score').textContent = `امتیاز شما: ${gameScore}`;
+                    alert("جمله شما صحیح است! امتیاز شما افزایش یافت.");
+                } else {
+                    alert("جمله شما از نظر نگارشی صحیح نیست. لطفاً دوباره امتحان کنید.");
+                }
+                document.getElementById('game-input').value = '';
+            } else {
+                alert("لطفاً یک جمله وارد کنید.");
+            }
+        }
+
+        // تابع ساده برای بررسی جمله
+        function validateSentence(sentence) {
+            // بررسی وجود فعل و فاعل در جمله
+            const hasVerb = /(می‌رود|می‌خورد|می‌نویسد|است|بود)/.test(sentence); // مثال فعل‌ها
+            const hasSubject = /(من|تو|او|ما|شما|آنها)/.test(sentence); // مثال فاعل‌ها
+
+            return hasVerb && hasSubject;
+        }
+
+        // Update progress whenever text changes
+        document.addEventListener('input', updateProgress);
+    </script>
+</body>
+</html>
